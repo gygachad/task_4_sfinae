@@ -7,7 +7,12 @@
 
 #include "debug.h"
 
-//Except this
+/// <summary>
+/// Print vector and list in ip mode
+/// </summary>
+/// <typeparam name="Container">The Type of the container.</typeparam>
+/// <param name="container">Container for print.</param>
+/// <returns>None.</returns>
 template <
 	template <typename, typename> typename Container,
 	typename Type,
@@ -29,7 +34,12 @@ void print_ip(const Container<Type, Allocator> &container)
 	std::cout << std::endl;
 }
 
-
+/// <summary>
+/// Print int*_t in ip mode
+/// </summary>
+/// <typeparam name="T">The Type of the int*. Can be int8_t, int16_t, int32_t and int64_t</typeparam>
+/// <param name="int_obj">Integer for print.</param>
+/// <returns>None.</returns>
 template< 
 	typename T,
 	typename = std::enable_if_t <
@@ -52,7 +62,12 @@ void print_ip(const T& int_obj)
 	return;
 }
 
-
+/// <summary>
+/// Print string as string
+/// </summary>
+/// <typeparam name="T">T is always string</typeparam>
+/// <param name="str_obj">String for print.</param>
+/// <returns>None.</returns>
 template<
 	typename T,
 	typename = std::enable_if_t<
@@ -64,6 +79,13 @@ const std::string& print_ip(const T& str_obj)
 	return str_obj;
 }
 
+/// <summary>
+/// Print tuple in ip mode. Print last element.
+/// </summary>
+/// <typeparam name="T">T is always tuple of Args</typeparam>
+/// <typeparam name="I">Tuple elment position for print. Last position, I == sizeof...(Args) - 1</typeparam>
+/// <param name="tuple_obj">Tuple for print.</param>
+/// <returns>None.</returns>
 template<
 	size_t I = 0,
 	template <typename...> typename T,
@@ -79,6 +101,13 @@ int print_ip(const T<Args...>& tuple_obj)
 	return 0;
 }
 
+/// <summary>
+/// Print tuple in ip mode.
+/// </summary>
+/// <typeparam name="T">T is always tuple of Args</typeparam>
+/// <typeparam name="I">Tuple elment position for print. I != sizeof...(Args) - 1</typeparam>
+/// <param name="tuple_obj">Tuple for print.</param>
+/// <returns>None.</returns>
 template<
 	size_t I = 0,
 	template <typename...> typename T,
