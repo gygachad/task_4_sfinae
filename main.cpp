@@ -2,6 +2,8 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include <climits>
+#include <tuple>
 
 #include "debug.h"
 
